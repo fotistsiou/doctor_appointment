@@ -27,11 +27,11 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User save(User user) {
+    public User save(User user, String role) {
         if (user.getId() == null) {
             if (user.getRoles().isEmpty()) {
                 Set<Role> roles = new HashSet<>();
-                roleRepository.findByName("ROLE_USER").ifPresent(roles::add);
+                roleRepository.findByName(role).ifPresent(roles::add);
                 user.setRoles(roles);
             }
         }

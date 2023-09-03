@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import jakarta.validation.Valid;
 import org.springframework.validation.BindingResult;
@@ -30,8 +31,9 @@ public class RegisterController {
         return "register";
     }
 
-    @PostMapping("/register")
+    @PostMapping("/register/{role}")
     public String registerNewUser(
+        @PathVariable String role,
         @Valid @ModelAttribute("user") User user,
         BindingResult result,
         Model model
@@ -47,7 +49,7 @@ public class RegisterController {
             return "register";
         }
 
-        userService.save(user);
+        userService.save(user, role);
         return "redirect:/login?success_register";
     }
 }

@@ -41,6 +41,7 @@ public class SeedDataConfig implements CommandLineRunner {
         user1.setLastName("user_last");
         user1.setEmail("user.user@domain.com");
         user1.setPassword("password");
+        user1.setTelephone("2101245789");
         Set<Role> roles1 = new HashSet<>();
         roleRepository.findByName("ROLE_USER").ifPresent(roles1::add);
         user1.setRoles(roles1);
@@ -49,11 +50,14 @@ public class SeedDataConfig implements CommandLineRunner {
         user2.setLastName("admin_last");
         user2.setEmail("admin.user@domain.com");
         user2.setPassword("password");
+        user2.setTelephone("2101245789");
+        user2.setAddress("Platonos 134, 17674 Kallithea, Athens");
+        user2.setSpecialization("pathologos");
         Set<Role> roles2 = new HashSet<>();
         roleRepository.findByName("ROLE_ADMIN").ifPresent(roles2::add);
         user2.setRoles(roles2);
 
-        userService.save(user1);
-        userService.save(user2);
+        userService.save(user1, user1.getRoles().toString());
+        userService.save(user2, user1.getRoles().toString());
     }
 }

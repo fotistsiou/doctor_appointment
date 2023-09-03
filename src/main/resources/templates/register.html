@@ -23,19 +23,134 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-6 offset-md-3">
+            <div class="col-sm">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="text-center">Registration Doctor</h2>
+                        </div>
+
+                        <div class="card-body">
+                            <form action="#" role="form" th:action="@{/register/ROLE_ADMIN}" th:object="${user}" method="POST">
+                                <div class="form-group mb-3">
+                                    <label for="firstName" class="form-label">First Name</label>
+                                    <input class="form-control"
+                                           id="firstName"
+                                           name="firstName"
+                                           placeholder="Enter first name"
+                                           th:field="*{firstName}"
+                                           type="text"
+                                    />
+                                    <p class="text-danger"
+                                       th:errors="*{firstName}"
+                                       th:if="${#fields.hasErrors('firstName')}">
+                                    </p>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="lastName" class="form-label">Last Name</label>
+                                    <input class="form-control"
+                                           id="lastName"
+                                           name="lastName"
+                                           placeholder="Enter last name"
+                                           th:field="*{lastName}"
+                                           type="text"
+                                    />
+                                    <p class="text-danger"
+                                       th:errors="*{lastName}"
+                                       th:if="${#fields.hasErrors('lastName')}">
+                                    </p>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input class="form-control"
+                                           id="email"
+                                           name="email"
+                                           placeholder="Enter email address"
+                                           th:field="*{email}"
+                                           type="email"
+                                    />
+                                    <p class="text-danger"
+                                       th:errors="*{email}"
+                                       th:if="${#fields.hasErrors('email')}">
+                                    </p>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input class="form-control"
+                                           id="password"
+                                           name="password"
+                                           placeholder="Enter password"
+                                           th:field="*{password}"
+                                           type="password"
+                                    />
+                                    <p class="text-danger"
+                                       th:errors="*{password}"
+                                       th:if="${#fields.hasErrors('password')}">
+                                    </p>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="telephone" class="form-label">Telephone</label>
+                                    <input class="form-control"
+                                           id="telephone"
+                                           name="telephone"
+                                           placeholder="Enter telephone"
+                                           th:field="*{telephone}"
+                                           type="tel"
+                                    />
+                                    <p class="text-danger"
+                                       th:errors="*{telephone}"
+                                       th:if="${#fields.hasErrors('telephone')}">
+                                    </p>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="address" class="form-label">Address</label>
+                                    <input class="form-control"
+                                           id="address"
+                                           name="address"
+                                           placeholder="Enter address"
+                                           th:field="*{address}"
+                                           type="text"
+                                    />
+                                    <p class="text-danger"
+                                       th:errors="*{address}"
+                                       th:if="${#fields.hasErrors('address')}">
+                                    </p>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="specialization" class="form-label">Specialization</label>
+                                    <input class="form-control"
+                                           id="specialization"
+                                           name="specialization"
+                                           placeholder="Enter specialization"
+                                           th:field="*{specialization}"
+                                           type="text"
+                                    />
+                                    <p class="text-danger"
+                                       th:errors="*{specialization}"
+                                       th:if="${#fields.hasErrors('specialization')}">
+                                    </p>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <button class="btn btn-primary" type="submit">Register</button>
+                                    <span>Already registered? <a href="/" th:href="@{/login}">Login
+                                     here</a></span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+            </div>
+            <div class="col-sm">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="text-center">Registration</h2>
+                        <h2 class="text-center">Registration Patient</h2>
                     </div>
 
                     <div class="card-body">
-                        <form action="#" role="form" th:action="@{/register}" th:object="${user}" method="POST">
+                        <form action="#" role="form" th:action="@{/register/ROLE_USER}" th:object="${user}" method="POST">
                             <div class="form-group mb-3">
-                                <label for="firstName" class="form-label">First Name</label>
+                                <label for="firstNameUser" class="form-label">First Name</label>
                                 <input class="form-control"
-                                       id="firstName"
-                                       name="firstName"
+                                       id="firstNameUser"
+                                       name="firstNameUser"
                                        placeholder="Enter first name"
                                        th:field="*{firstName}"
                                        type="text"
@@ -45,12 +160,11 @@
                                    th:if="${#fields.hasErrors('firstName')}">
                                 </p>
                             </div>
-
                             <div class="form-group mb-3">
-                                <label for="lastName" class="form-label">Last Name</label>
+                                <label for="lastNameUser" class="form-label">Last Name</label>
                                 <input class="form-control"
-                                       id="lastName"
-                                       name="lastName"
+                                       id="lastNameUser"
+                                       name="lastNameUser"
                                        placeholder="Enter last name"
                                        th:field="*{lastName}"
                                        type="text"
@@ -61,10 +175,10 @@
                                 </p>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="email" class="form-label">Email</label>
+                                <label for="emailUser" class="form-label">Email</label>
                                 <input class="form-control"
-                                       id="email"
-                                       name="email"
+                                       id="emailUser"
+                                       name="emailUser"
                                        placeholder="Enter email address"
                                        th:field="*{email}"
                                        type="email"
@@ -75,10 +189,10 @@
                                 </p>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="password" class="form-label">Password</label>
+                                <label for="passwordUser" class="form-label">Password</label>
                                 <input class="form-control"
-                                       id="password"
-                                       name="password"
+                                       id="passwordUser"
+                                       name="passwordUser"
                                        placeholder="Enter password"
                                        th:field="*{password}"
                                        type="password"
@@ -88,7 +202,20 @@
                                    th:if="${#fields.hasErrors('password')}">
                                 </p>
                             </div>
-
+                            <div class="form-group mb-3">
+                                <label for="telephoneUser" class="form-label">Telephone</label>
+                                <input class="form-control"
+                                       id="telephoneUser"
+                                       name="telephoneUser"
+                                       placeholder="Enter telephone"
+                                       th:field="*{telephone}"
+                                       type="tel"
+                                />
+                                <p class="text-danger"
+                                   th:errors="*{telephone}"
+                                   th:if="${#fields.hasErrors('telephone')}">
+                                </p>
+                            </div>
                             <div class="form-group mb-3">
                                 <button class="btn btn-primary" type="submit">Register</button>
                                 <span>Already registered? <a href="/" th:href="@{/login}">Login

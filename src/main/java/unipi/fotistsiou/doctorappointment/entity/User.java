@@ -31,6 +31,13 @@ public class User {
     @Column(nullable=false)
     private String lastName;
 
+    @Column(nullable=false)
+    private String telephone;
+
+    private String address;
+
+    private String specialization;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
