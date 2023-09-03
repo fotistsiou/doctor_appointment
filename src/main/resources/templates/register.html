@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="card-body">
-                            <form action="#" role="form" th:action="@{/register/ROLE_ADMIN}" th:object="${user}" method="POST">
+                            <form action="#" role="form" th:action="@{/register/ROLE_DOCTOR}" th:object="${user}" method="POST">
                                 <div class="form-group mb-3">
                                     <label for="firstName" class="form-label">First Name</label>
                                     <input class="form-control"
@@ -145,7 +145,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="#" role="form" th:action="@{/register/ROLE_USER}" th:object="${user}" method="POST">
+                        <form action="#" role="form" th:action="@{/register/ROLE_PATIENT}" th:object="${user}" method="POST">
                             <div class="form-group mb-3">
                                 <label for="firstNameUser" class="form-label">First Name</label>
                                 <input class="form-control"
