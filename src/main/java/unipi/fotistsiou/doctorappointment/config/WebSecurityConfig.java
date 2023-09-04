@@ -27,6 +27,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/").permitAll()
                         .requestMatchers("/register/**").permitAll()
                         .requestMatchers("/login/**").permitAll()
+                        .requestMatchers("/appointment/**").permitAll()
                         .requestMatchers("/css/**").permitAll()
                         .requestMatchers("/js/**").permitAll()
                         .requestMatchers(PathRequest.toH2Console()).permitAll()
