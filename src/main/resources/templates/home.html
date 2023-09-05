@@ -30,7 +30,7 @@
                         <a class="nav-link active" aria-current="page" th:href="@{/appointment/new}">Create Appointment</a>
                     </li>
                     <li class="nav-item" sec:authorize="hasRole('ROLE_PATIENT')">
-                        <a class="nav-link active" aria-current="page" th:href="@{/appointment/edit}">Book Appointment</a>
+                        <a class="nav-link active" aria-current="page" th:href="@{/appointment/all}">Book Appointment</a>
                     </li>
                 </ul>
             </div>

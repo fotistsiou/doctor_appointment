@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration and Login System</title>
+    <link rel="stylesheet"
+          th:href="@{/css/main.css}">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+    <script type="text/javascript" th:src="@{/js/actions.js}"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Doctor AnySite</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center">Available Appointments</h1>
+        </div>
+        <div class="row">
+            <div class="mb-3 appointment" th:each="appointment : ${appointments}" th:if="${appointment.booked == 0}">
+                <h3><a th:href="@{'/appointment/' + ${appointment.id} + '/edit'}" th:text="'Appointment #' + ${appointment.id}"></a></h3>
+                <h5 th:text="'Doctor: ' + ${appointment.doctor.firstName} + ' ' + ${appointment.doctor.lastName}"></h5>
+                <h5 th:text="'Specialization: ' + ${appointment.doctor.specialization}"></h5>
+                <h5 th:text="'Address: ' + ${appointment.doctor.address}"></h5>
+                <h5 th:text="'Appointment Date: ' + ${appointment.appointmentDate}"></h5>
+                <h5 th:text="'Appointment Time: ' + ${appointment.appointmentTime}"></h5>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

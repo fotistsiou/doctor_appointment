@@ -16,7 +16,7 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="address")
+    @Column(name="reason")
     private String reason;
 
     @Column(name="appointment_date")
