@@ -124,6 +124,6 @@ public class AppointmentsController {
             existingAppointment.setReason(appointment.getReason());
             appointmentService.save(existingAppointment);
         }
-        return "redirect:/?success_book";
+        return "redirect:/appointment/" + appointment.getId() + "?success";
     }
 }
