@@ -11,7 +11,6 @@ import unipi.fotistsiou.doctorappointment.entity.Appointment;
 import unipi.fotistsiou.doctorappointment.entity.User;
 import unipi.fotistsiou.doctorappointment.service.AppointmentService;
 import unipi.fotistsiou.doctorappointment.service.UserService;
-
 import java.security.Principal;
 import java.util.Optional;
 

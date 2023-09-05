@@ -37,24 +37,24 @@ public class SeedDataConfig implements CommandLineRunner {
         User user1 = new User();
         User user2 = new User();
 
-        user1.setFirstName("patient_first");
-        user1.setLastName("patient_last");
-        user1.setEmail("patient.user@domain.com");
-        user1.setPassword("password");
+        user1.setFirstName("doctor_first");
+        user1.setLastName("doctor_last");
+        user1.setEmail("doctor.user@domain.com");
+        user1.setPassword("1234!@#$qwer");
         user1.setTelephone("2101245789");
+        user1.setAddress("Platonos 134, 17674 Kallithea, Athens");
+        user1.setSpecialization("pathologos");
         Set<Role> roles1 = new HashSet<>();
-        roleRepository.findByName("ROLE_PATIENT").ifPresent(roles1::add);
+        roleRepository.findByName("ROLE_DOCTOR").ifPresent(roles1::add);
         user1.setRoles(roles1);
 
-        user2.setFirstName("doctor_first");
-        user2.setLastName("doctor_last");
-        user2.setEmail("doctor.user@domain.com");
-        user2.setPassword("password");
+        user2.setFirstName("patient_first");
+        user2.setLastName("patient_last");
+        user2.setEmail("patient.user@domain.com");
+        user2.setPassword("1234!@#$qwer");
         user2.setTelephone("2101245789");
-        user2.setAddress("Platonos 134, 17674 Kallithea, Athens");
-        user2.setSpecialization("pathologos");
         Set<Role> roles2 = new HashSet<>();
-        roleRepository.findByName("ROLE_DOCTOR").ifPresent(roles2::add);
+        roleRepository.findByName("ROLE_PATIENT").ifPresent(roles2::add);
         user2.setRoles(roles2);
 
         userService.save(user1, user1.getRoles().toString());

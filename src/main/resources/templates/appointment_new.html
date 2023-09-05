@@ -23,7 +23,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm">
+        <div class="col-md-6 offset-md-3">
             <div class="card">
                 <div class="card-header">
                     <h2 class="text-center">Create an Appointment</h2>
@@ -48,8 +48,22 @@
                             </p>
                         </div>
                         <div class="form-group mb-3">
+                            <label for="appointmentTime" class="form-label">Appointment Time</label>
+                            <input class="form-control"
+                                   id="appointmentTime"
+                                   name="appointmentTime"
+                                   placeholder="Enter a date for an appointment"
+                                   th:field="*{appointmentTime}"
+                                   type="time"
+                            />
+                            <p class="text-danger"
+                               th:errors="*{appointmentTime}"
+                               th:if="${#fields.hasErrors('appointmentTime')}">
+                            </p>
+                        </div>
+                        <div class="form-group mb-3">
                             <button class="btn btn-primary" type="submit">Create Appointment</button>
-                            <span><a href="/" th:href="@{/}">Cancel</a></span>
+                            <button class="btn btn-secondary" type="button"><a href="/" th:href="@{/}">Cancel</a></button>
                         </div>
                     </form>
                 </div>

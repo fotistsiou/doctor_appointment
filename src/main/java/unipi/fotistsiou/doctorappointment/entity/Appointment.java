@@ -12,17 +12,20 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "appointment")
 public class Appointment {
-    private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name="address")
     private String reason;
 
+    @Column(name="appointment_date")
     private String appointmentDate;
 
-    @Column(nullable=false)
+    @Column(name="appointment_time")
+    private String appointmentTime;
+
+    @Column(name="booked", nullable=false)
     private int booked;
 
     @NotNull
