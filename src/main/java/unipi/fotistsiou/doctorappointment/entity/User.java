@@ -1,6 +1,7 @@
 package unipi.fotistsiou.doctorappointment.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,18 +18,23 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty(message = "Email cannot be empty")
     @Column(name="email", nullable=false, unique=true)
     private String email;
 
+    @NotEmpty(message = "Password cannot be empty")
     @Column(name="password", nullable=false)
     private String password;
 
+    @NotEmpty(message = "Firstname cannot be empty")
     @Column(name="first_name", nullable=false)
     private String firstName;
 
+    @NotEmpty(message = "Lastname cannot be empty")
     @Column(name="last_name", nullable=false)
     private String lastName;
 
+    @NotEmpty(message = "Telephone cannot be empty")
     @Column(name="telephone", nullable=false)
     private String telephone;
 
