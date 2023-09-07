@@ -25,10 +25,22 @@ public class RegisterController {
     }
 
     @GetMapping("/register")
-    public String getRegisterForm(Model model) {
+    public String getRegisterMidForm() {
+        return "register";
+    }
+
+    @GetMapping("/register/doctor")
+    public String getRegisterAsDoctorForm(Model model) {
         User user = new User();
         model.addAttribute("user", user);
-        return "register";
+        return "register_doctor";
+    }
+
+    @GetMapping("/register/patient")
+    public String getRegisterAsPatientForm(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+        return "register_patient";
     }
 
     @PostMapping("/register/{role}")
@@ -41,12 +53,19 @@ public class RegisterController {
         Optional<User> optionalUser = userService.findOneByEmail(user.getEmail());
 
         if (optionalUser.isPresent()) {
-            result.rejectValue("email", null, "There is already an account registered with that email");
+            result.rejectValue("email", null, "There is already an account registered with that email. Please try with other email account.");
         }
 
         if (result.hasErrors()) {
             model.addAttribute("user", user);
-            return "register";
+            switch (role) {
+                case "ROLE_DOCTOR":
+                    return "register_doctor";
+                case "ROLE_PATIENT":
+                    return "register_patient";
+                default:
+                    return "register";
+            }
         }
 
         userService.save(user, role);

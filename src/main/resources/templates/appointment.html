@@ -23,18 +23,14 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6 offset-md-3 appointment">
-
-        </div>
-    </div>
-
-    <div class="row">
         <div class="col-md-6 offset-md-3">
+            <div th:if="${param.success}">
+                <div class="alert alert-success">You've successfully booked an appointment!</div>
+            </div>
             <div class="card">
                 <div class="card-header">
                     <h2 class="text-center" th:text="'Your Appointment #' + ${appointment.id}"></h2>
                 </div>
-
                 <div class="card-body">
                     <h5 th:text="'Doctor: ' + ${appointment.doctor.firstName} + ' ' + ${appointment.doctor.lastName}"></h5>
                     <h5 th:text="'Patient: ' + ${appointment.patient.firstName} + ' ' + ${appointment.patient.lastName}"></h5>

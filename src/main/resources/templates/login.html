@@ -31,7 +31,7 @@
                       <div class="alert alert-success">You have been logged out.</div>
                   </div>
                   <div th:if="${param.success_register}">
-                      <div class="alert alert-info">You've successfully registered to Doctor AnySite! Sign in to book your first appointment!</div>
+                      <div class="alert alert-info">You've successfully registered to Doctor AnySite! Sign in to explore the app!!</div>
                   </div>
                   <div class="card">
                       <div class="card-header">
@@ -62,7 +62,10 @@
                               <div class="mb-3">
                                   <button type="submit" class="btn btn-primary">Login</button>
                                   <span>
-                                      Not registered? <a th:href="@{/register}">Register/SignUp Here</a>
+                                      Not registered?
+                                      <a th:href="@{/register/doctor}">Register/SignUp as Doctor</a>
+                                       |
+                                      <a th:href="@{/register/patient}">Register/SignUp as Patient</a>
                                   </span>
                               </div>
                           </form>
