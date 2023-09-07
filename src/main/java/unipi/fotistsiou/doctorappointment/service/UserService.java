@@ -18,9 +18,9 @@ public class UserService {
 
     @Autowired
     public UserService (
-            UserRepository userRepository,
-            RoleRepository roleRepository,
-            PasswordEncoder passwordEncoder
+        UserRepository userRepository,
+        RoleRepository roleRepository,
+        PasswordEncoder passwordEncoder
     ){
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;

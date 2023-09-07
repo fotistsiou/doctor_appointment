@@ -12,37 +12,60 @@
     <script type="text/javascript" th:src="@{/js/actions.js}"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">Doctor AnySite</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Doctor AnySite</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <div th:if="${param.success}">
-                <div class="alert alert-success">You've successfully booked an appointment!</div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="text-center" th:text="'Your Appointment #' + ${appointment.id}"></h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div th:if="${param.success}">
+                    <div class="alert alert-success">You've successfully booked an appointment!</div>
                 </div>
-                <div class="card-body">
-                    <h5 th:text="'Doctor: ' + ${appointment.doctor.firstName} + ' ' + ${appointment.doctor.lastName}"></h5>
-                    <h5 th:text="'Patient: ' + ${appointment.patient.firstName} + ' ' + ${appointment.patient.lastName}"></h5>
-                    <h5 th:text="'Specialization: ' + ${appointment.doctor.specialization}"></h5>
-                    <h5 th:text="'Address: ' + ${appointment.doctor.address}"></h5>
-                    <h5 th:text="'Appointment Date: ' + ${appointment.appointmentDate}"></h5>
-                    <h5 th:text="'Appointment Time: ' + ${appointment.appointmentTime}"></h5>
-                    <h5 th:text="'Reason: ' + ${appointment.reason}"></h5>
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-center">Your Appointment</h2>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th scope="row">Doctor</th>
+                                <td th:text="${appointment.doctor.firstName} + ' ' + ${appointment.doctor.lastName}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Specialization</th>
+                                <td th:text="${appointment.doctor.specialization}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Address</th>
+                                <td th:text="${appointment.doctor.address}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Appointment Date</th>
+                                <td th:text="${appointment.appointmentDate}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Appointment Time</th>
+                                <td th:text="${appointment.appointmentTime}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Patient</th>
+                                <td th:text="'Patient: ' + ${appointment.patient.firstName} + ' ' + ${appointment.patient.lastName}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Reason</th>
+                                <td th:text="${appointment.reason}"></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>

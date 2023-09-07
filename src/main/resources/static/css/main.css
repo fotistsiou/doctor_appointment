@@ -1,5 +1,5 @@
-.btn-secondary a,
-.btn-secondary a:hover {
+.btn-danger a,
+.btn-danger a:hover {
     color: #fff;
     text-decoration: none;
 }

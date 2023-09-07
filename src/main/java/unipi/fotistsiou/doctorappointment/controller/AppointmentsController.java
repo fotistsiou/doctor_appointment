@@ -61,14 +61,14 @@ public class AppointmentsController {
         if (principal != null) {
             authUsername = principal.getName();
         }
-        appointmentService.save(appointment);
+        appointmentService.saveAppointment(appointment);
         return "redirect:/appointment/new?success";
     }
 
     @GetMapping("/appointment/all")
     @PreAuthorize("isAuthenticated()")
     public String getAllAppointments(Model model) {
-        List<Appointment> appointments = appointmentService.getAll();
+        List<Appointment> appointments = appointmentService.getAvailableAppointments();
         model.addAttribute("appointments", appointments);
         return "appointment_all";
     }
@@ -79,7 +79,7 @@ public class AppointmentsController {
         @PathVariable Long id,
         Model model
     ) {
-        Optional<Appointment> optionalAppointment = appointmentService.getById(id);
+        Optional<Appointment> optionalAppointment = appointmentService.getAppointmentById(id);
         if (optionalAppointment.isPresent()) {
             Appointment appointment = optionalAppointment.get();
             model.addAttribute("appointment", appointment);
@@ -95,7 +95,7 @@ public class AppointmentsController {
         @PathVariable Long id,
         Model model
     ){
-        Optional<Appointment> optionalAppointment = this.appointmentService.getById(id);
+        Optional<Appointment> optionalAppointment = this.appointmentService.getAppointmentById(id);
         if (optionalAppointment.isPresent()) {
             Appointment appointment = optionalAppointment.get();
             model.addAttribute("appointment", appointment);
@@ -117,12 +117,12 @@ public class AppointmentsController {
             authUsername = principal.getName();
         }
         Optional<User> optionalUser = userService.findOneByEmail(authUsername);
-        Optional<Appointment> optionalAppointment = appointmentService.getById(id);
+        Optional<Appointment> optionalAppointment = appointmentService.getAppointmentById(id);
         if (optionalAppointment.isPresent() && optionalUser.isPresent()) {
             Appointment existingAppointment = optionalAppointment.get();
             existingAppointment.setPatient(optionalUser.get());
             existingAppointment.setReason(appointment.getReason());
-            appointmentService.save(existingAppointment);
+            appointmentService.saveAppointment(existingAppointment);
         }
         return "redirect:/appointment/" + appointment.getId() + "?success";
     }

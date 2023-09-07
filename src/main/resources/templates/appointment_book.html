@@ -26,20 +26,36 @@
             <div class="col-md-6 offset-md-3">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="text-center" th:text="'Book the appointment #' + ${appointment.id}"></h2>
+                        <h2 class="text-center">Book the Appointment</h2>
                     </div>
                     <div class="card-body">
-                        <h3 th:text="'Appointment #' + ${appointment.id}"></h3>
-                        <h5 th:text="'Doctor: ' + ${appointment.doctor.firstName} + ' ' + ${appointment.doctor.lastName}"></h5>
-                        <h5 th:text="'Specialization: ' + ${appointment.doctor.specialization}"></h5>
-                        <h5 th:text="'Address: ' + ${appointment.doctor.address}"></h5>
-                        <h5 th:text="'Appointment Date: ' + ${appointment.appointmentDate}"></h5>
-                        <h5 th:text="'Appointment Time: ' + ${appointment.appointmentTime}"></h5>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th scope="row">Doctor</th>
+                                <td th:text="${appointment.doctor.firstName} + ' ' + ${appointment.doctor.lastName}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Specialization</th>
+                                <td th:text="${appointment.doctor.specialization}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Address</th>
+                                <td th:text="${appointment.doctor.address}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Appointment Date</th>
+                                <td th:text="${appointment.appointmentDate}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Appointment Time</th>
+                                <td th:text="${appointment.appointmentTime}"></td>
+                            </tr>
+                        </table>
                         <form action="#" th:action="@{'/appointment/{id}'(id=${appointment.id})}" th:object="${appointment}" method="POST">
                             <input type="hidden" th:field="*{patient}" />
                             <input type="hidden" th:field="*{booked}" />
                             <div class="form-group mb-3">
-                                <label for="reason" class="form-label">Appointment Reason</label>
+                                <label for="reason" class="form-label">Inform the doctor about the reasons for the appointment:</label>
                                 <textarea
                                    class="form-control"
                                    id="reason"
@@ -55,7 +71,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <button class="btn btn-primary" type="submit">Book Appointment</button>
-                                <button class="btn btn-secondary" type="button"><a href="/" th:href="@{/}">Cancel</a></button>
+                                <button class="btn btn-danger" type="button"><a href="/" th:href="@{/}">Cancel</a></button>
                             </div>
                         </form>
                     </div>
