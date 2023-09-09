@@ -14,9 +14,7 @@ public class HomeController {
     private final UserService userService;
 
     @Autowired
-    public HomeController(
-        UserService userService
-    ){
+    public HomeController(UserService userService){
         this.userService = userService;
     }
 
@@ -29,7 +27,9 @@ public class HomeController {
         Optional<User> optionalUser = userService.findOneByEmail(authUsername);
         if (optionalUser.isPresent()) {
             String username = optionalUser.get().getFirstName();
+            Long userId = optionalUser.get().getId();
             model.addAttribute("username", username);
+            model.addAttribute("userId", userId);
         }
         return "home";
     }

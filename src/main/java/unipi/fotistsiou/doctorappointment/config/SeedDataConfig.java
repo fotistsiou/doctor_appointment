@@ -3,7 +3,6 @@ package unipi.fotistsiou.doctorappointment.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import unipi.fotistsiou.doctorappointment.entity.Appointment;
 import unipi.fotistsiou.doctorappointment.entity.User;
 import unipi.fotistsiou.doctorappointment.entity.Role;
 import unipi.fotistsiou.doctorappointment.repository.RoleRepository;

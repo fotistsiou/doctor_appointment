@@ -55,7 +55,7 @@
                             </tr>
                             <tr>
                                 <th scope="row">Patient</th>
-                                <td th:text="'Patient: ' + ${appointment.patient.firstName} + ' ' + ${appointment.patient.lastName}"></td>
+                                <td th:text="${appointment.patient.firstName} + ' ' + ${appointment.patient.lastName}"></td>
                             </tr>
                             <tr>
                                 <th scope="row">Reason</th>

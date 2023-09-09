@@ -25,12 +25,12 @@ public class WebSecurityConfig {
                 )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/").permitAll()
-                        .requestMatchers("/register/**").permitAll()
-                        .requestMatchers("/login/**").permitAll()
-                        .requestMatchers("/appointment/**").permitAll()
-                        .requestMatchers("/css/**").permitAll()
                         .requestMatchers("/js/**").permitAll()
-                        .requestMatchers(PathRequest.toH2Console()).permitAll()
+                        .requestMatchers("/css/**").permitAll()
+                        .requestMatchers("/login/**").permitAll()
+                        .requestMatchers("/account/**").permitAll()
+                        .requestMatchers("/register/**").permitAll()
+                        .requestMatchers("/appointment/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

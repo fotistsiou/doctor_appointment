@@ -6,6 +6,7 @@ import unipi.fotistsiou.doctorappointment.entity.Appointment;
 import unipi.fotistsiou.doctorappointment.repository.AppointmentRepository;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -32,6 +33,17 @@ public class AppointmentService {
         List<Appointment> appointments = appointmentRepository.findAll();
         for (Appointment appointment:appointments) {
             if (appointment.getBooked() == 0) {
+                availableAppointments.add(appointment);
+            }
+        }
+        return availableAppointments;
+    }
+
+    public List<Appointment> getAvailableAppointmentsFromUser(Long userId) {
+        List<Appointment> availableAppointments = new ArrayList<>();
+        List<Appointment> appointments = appointmentRepository.findAll();
+        for (Appointment appointment:appointments) {
+            if (appointment.getPatient() != null && appointment.getPatient().getId().equals(userId)) {
                 availableAppointments.add(appointment);
             }
         }

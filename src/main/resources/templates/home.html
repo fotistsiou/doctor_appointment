@@ -32,6 +32,17 @@
                     <li class="nav-item" sec:authorize="hasRole('ROLE_PATIENT')">
                         <a class="nav-link active" aria-current="page" th:href="@{/appointment/all}">Book Appointment</a>
                     </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link active" aria-current="page" th:href="@{'/account/info/' + ${userId}}">My Account</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link active" aria-current="page" th:href="@{'/appointment/my/' + ${userId}}">My Appointments</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <form action="#" role="form" th:action="@{/logout}" method="POST">
+                            <a class="nav-link active" aria-current="page"><button type="submit">Logout</button></a>
+                        </form>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -48,7 +59,7 @@
             <div>
                 <label>Hi, <span th:text="${username}"></span></label>
             </div>
-            <form action="#" th:action="@{/logout}" method="POST">
+            <form action="#" role="form" th:action="@{/logout}" method="POST">
                 <button type="submit">Logout!</button>
             </form>
         </div>

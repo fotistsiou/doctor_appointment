@@ -53,14 +53,7 @@ public class AppointmentsController {
 
     @PostMapping("/appointment/new")
     @PreAuthorize("hasRole('ROLE_DOCTOR')")
-    public String createNewAppointment(
-        @ModelAttribute Appointment appointment,
-        Principal principal
-    ){
-        String authUsername = "anonymousUser";
-        if (principal != null) {
-            authUsername = principal.getName();
-        }
+    public String createNewAppointment(@ModelAttribute Appointment appointment) {
         appointmentService.saveAppointment(appointment);
         return "redirect:/appointment/new?success";
     }
@@ -99,7 +92,7 @@ public class AppointmentsController {
         if (optionalAppointment.isPresent()) {
             Appointment appointment = optionalAppointment.get();
             model.addAttribute("appointment", appointment);
-            return "appointment";
+            return "appointment_review";
         } else {
             return "404";
         }
@@ -124,6 +117,32 @@ public class AppointmentsController {
             existingAppointment.setReason(appointment.getReason());
             appointmentService.saveAppointment(existingAppointment);
         }
-        return "redirect:/appointment/" + appointment.getId() + "?success";
+        return String.format("redirect:/appointment/%d?success", appointment.getId());
+    }
+
+    @GetMapping("/appointment/my/{id}")
+    @PreAuthorize("isAuthenticated()")
+    public String myAppointments(
+            @PathVariable Long id,
+            Model model,
+            Principal principal
+    ){
+        String authUsername = "anonymousUser";
+        if (principal != null) {
+            authUsername = principal.getName();
+        }
+        Optional<User> optionalUser = this.userService.getUserById(id);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            if (user.getEmail().compareToIgnoreCase(authUsername) < 0) {
+                return "404";
+            }
+            List<Appointment> appointments = appointmentService.getAvailableAppointmentsFromUser(id);
+            model.addAttribute("appointments", appointments);
+            //model.addAttribute("user", user);
+            return "appointment_my";
+        } else {
+            return "404";
+        }
     }
 }
