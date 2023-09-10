@@ -50,18 +50,8 @@
 
     <div class="container">
         <div class="row">
-            <h1 class="text-center">Welcome to Doctor AnySite</h1>
-        </div>
-    </div>
-
-    <div class="footer">
-        <div sec:authorize="isAuthenticated()">
-            <div>
-                <label>Hi, <span th:text="${username}"></span></label>
-            </div>
-            <form action="#" role="form" th:action="@{/logout}" method="POST">
-                <button type="submit">Logout!</button>
-            </form>
+            <h1 class="text-center" sec:authorize="isAuthenticated()" th:text="'Welcome, ' + ${username} + ' to Doctor AnySite!'"></h1>
+            <h1 class="text-center" sec:authorize="!isAuthenticated()">Welcome to Doctor AnySite!</h1>
         </div>
     </div>
 </body>

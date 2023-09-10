@@ -85,8 +85,8 @@ public class UserController {
         Optional<User> optionalUser = this.userService.getUserById(id);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            if (user.getEmail().compareToIgnoreCase(authUsername) < 0) {
-                return "404";
+            if (!user.getEmail().equals(authUsername)) {
+               return "404";
             }
             model.addAttribute("user", user);
             return "account_info";

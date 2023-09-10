@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import unipi.fotistsiou.doctorappointment.entity.Appointment;
+import unipi.fotistsiou.doctorappointment.entity.Role;
 import unipi.fotistsiou.doctorappointment.entity.User;
+import unipi.fotistsiou.doctorappointment.repository.RoleRepository;
 import unipi.fotistsiou.doctorappointment.service.AppointmentService;
 import unipi.fotistsiou.doctorappointment.service.UserService;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 public class AppointmentsController {
@@ -134,12 +137,12 @@ public class AppointmentsController {
         Optional<User> optionalUser = this.userService.getUserById(id);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            if (user.getEmail().compareToIgnoreCase(authUsername) < 0) {
+            if (!user.getEmail().equals(authUsername)) {
                 return "404";
             }
-            List<Appointment> appointments = appointmentService.getAvailableAppointmentsFromUser(id);
+            String role = user.getRoles().toString();
+            List<Appointment> appointments = appointmentService.getAvailableUserAppointments(id, role);
             model.addAttribute("appointments", appointments);
-            //model.addAttribute("user", user);
             return "appointment_my";
         } else {
             return "404";

@@ -23,41 +23,42 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-6 offset-md-3">
+            <div class="col-md-10 offset-md-1">
                 <div th:if="${param.success}">
                     <div class="alert alert-success">You've successfully booked an appointment!</div>
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="text-center">Your Appointment</h2>
+                        <h2 class="text-center">Your Appointments</h2>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" th:if="${!appointments.isEmpty()}">
                             <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Doctor</th>
-                                <th scope="col">Specialization</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">Appointment Date</th>
-                                <th scope="col">Appointment Time</th>
-                                <th scope="col">Patient</th>
-                                <th scope="col">Reason</th>
-                            </tr>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Doctor</th>
+                                    <th scope="col">Specialization</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Appointment Date</th>
+                                    <th scope="col">Appointment Time</th>
+                                    <th scope="col">Patient</th>
+                                    <th scope="col">Reason</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="appointment, loopStat : ${appointments}">
-                                <th scope="row" th:text="${loopStat.index + 1}"></th>
-                                <td th:text="${appointment.doctor.firstName} + ' ' + ${appointment.doctor.lastName}"></td>
-                                <td th:text="${appointment.doctor.specialization}"></td>
-                                <td th:text="${appointment.doctor.address}"></td>
-                                <td th:text="${appointment.appointmentDate}"></td>
-                                <td th:text="${appointment.appointmentTime}"></td>
-<!--                                <td th:text="${appointment.patient.firstName} + ' ' + ${appointment.patient.lastName}"></td>-->
-                                <td th:text="${appointment.reason}"></td>
-                            </tr>
+                                <tr th:each="appointment, loopStat : ${appointments}">
+                                    <th scope="row" th:text="${loopStat.index + 1}"></th>
+                                    <td th:text="${appointment.doctor.firstName} + ' ' + ${appointment.doctor.lastName}"></td>
+                                    <td th:text="${appointment.doctor.specialization}"></td>
+                                    <td th:text="${appointment.doctor.address}"></td>
+                                    <td th:text="${appointment.appointmentDate}"></td>
+                                    <td th:text="${appointment.appointmentTime}"></td>
+                                    <td th:if="${appointment.patient}" th:text="${appointment.patient.firstName} + ' ' + ${appointment.patient.lastName}"></td>
+                                    <td th:if="${appointment.patient}" th:text="${appointment.reason}"></td>
+                                </tr>
                             </tbody>
                         </table>
+                        <span th:if="${appointments.isEmpty()}">You don't have an appointment yet...</span>
                     </div>
                 </div>
             </div>

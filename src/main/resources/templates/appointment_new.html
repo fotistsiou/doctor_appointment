@@ -24,15 +24,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3">
+                <div th:if="${param.success}">
+                    <div class="alert alert-success">You've successfully created an appointment!</div>
+                </div>
                 <div class="card">
-                    <div th:if="${param.success}">
-                        <div class="alert alert-success">You've successfully created an appointment!</div>
-                    </div>
-
                     <div class="card-header">
                         <h2 class="text-center">Create an Appointment</h2>
                     </div>
-
                     <div class="card-body">
                         <form action="#" role="form" th:action="@{'/appointment/new'}" th:object="${appointment}" method="POST">
                             <input type="hidden" th:field="*{doctor}" />

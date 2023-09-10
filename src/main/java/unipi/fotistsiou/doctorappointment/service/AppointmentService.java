@@ -39,12 +39,18 @@ public class AppointmentService {
         return availableAppointments;
     }
 
-    public List<Appointment> getAvailableAppointmentsFromUser(Long userId) {
+    public List<Appointment> getAvailableUserAppointments(Long userId, String role) {
         List<Appointment> availableAppointments = new ArrayList<>();
         List<Appointment> appointments = appointmentRepository.findAll();
         for (Appointment appointment:appointments) {
-            if (appointment.getPatient() != null && appointment.getPatient().getId().equals(userId)) {
-                availableAppointments.add(appointment);
+            if (role.contains("ROLE_PATIENT")) {
+                if (appointment.getPatient() != null && appointment.getPatient().getId().equals(userId)) {
+                    availableAppointments.add(appointment);
+                }
+            } else if (role.contains("ROLE_DOCTOR")) {
+                if (appointment.getDoctor().getId().equals(userId)) {
+                    availableAppointments.add(appointment);
+                }
             }
         }
         return availableAppointments;
