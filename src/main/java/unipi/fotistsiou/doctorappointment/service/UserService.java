@@ -2,7 +2,6 @@ package unipi.fotistsiou.doctorappointment.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import unipi.fotistsiou.doctorappointment.entity.Appointment;
 import unipi.fotistsiou.doctorappointment.entity.Role;
 import unipi.fotistsiou.doctorappointment.entity.User;
 import unipi.fotistsiou.doctorappointment.repository.RoleRepository;
