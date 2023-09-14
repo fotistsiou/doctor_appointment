@@ -47,4 +47,16 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
+
+    public void update(User user) {
+        userRepository.updateUser(
+                user.getId(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmail(),
+                user.getTelephone(),
+                user.getAddress(),
+                user.getSpecialization()
+        );
+    }
 }

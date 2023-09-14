@@ -94,4 +94,48 @@ public class UserController {
             return "404";
         }
     }
+
+    @GetMapping("/account/info/edit/{id}")
+    @PreAuthorize("isAuthenticated()")
+    public String editAccountInfo(
+        @PathVariable Long id,
+        Model model,
+        Principal principal
+    ){
+        String authUsername = "anonymousUser";
+        if (principal != null) {
+            authUsername = principal.getName();
+        }
+        Optional<User> optionalUser = this.userService.getUserById(id);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            if (!user.getEmail().equals(authUsername)) {
+                return "404";
+            }
+            model.addAttribute("user", user);
+            return "account_info_edit";
+        } else {
+            return "404";
+        }
+    }
+
+    @PostMapping("/account/info/edit/{id}")
+    @PreAuthorize("isAuthenticated()")
+    public String updateAccountInfo (
+        @PathVariable Long id,
+        User user
+    ){
+        Optional<User> optionalUser = this.userService.getUserById(id);
+        if (optionalUser.isPresent()) {
+            User existingUser = optionalUser.get();
+            existingUser.setFirstName(user.getFirstName());
+            existingUser.setLastName(user.getLastName());
+            existingUser.setEmail(user.getEmail());
+            existingUser.setTelephone(user.getTelephone());
+            existingUser.setAddress(user.getAddress());
+            existingUser.setSpecialization(user.getSpecialization());
+            userService.update(existingUser);
+        }
+        return String.format("redirect:/account/info/%d?success_edit", user.getId());
+    }
 }

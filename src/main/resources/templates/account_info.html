@@ -27,6 +27,9 @@
             <div th:if="${param.success}">
                 <div class="alert alert-success">You've successfully booked an appointment!</div>
             </div>
+            <div th:if="${param.success_edit}">
+                <div class="alert alert-success">You've successfully updated your account info!</div>
+            </div>
             <div class="card">
                 <div class="card-header">
                     <h2 class="text-center">My Account Info</h2>
@@ -58,6 +61,9 @@
                             <td th:text="${user.specialization}"></td>
                         </tr>
                     </table>
+                    <div>
+                        <a class="text-right" th:href="@{'/account/info/edit/' + ${user.id}}">Edit</a>
+                    </div>
                 </div>
             </div>
         </div>
