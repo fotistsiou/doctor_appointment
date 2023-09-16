@@ -14,7 +14,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">Doctor AnySite</a>
+            <a class="navbar-brand" th:href="@{/}" th:text="'Doctor AnySite'"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -24,33 +24,36 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 offset-md-1">
+                <div th:if="${param.success}">
+                    <div class="alert alert-success" th:text="'Έκλεισες με επιτυχία ένα ραντεβού!'"></div>
+                </div>
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="text-center">Available Appointments</h2>
+                        <h2 class="text-center" th:text="'Διαθέσιμα Ραντεβού'"></h2>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered">
                             <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Doctor</th>
-                                <th scope="col">Specialization</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">Appointment Date</th>
-                                <th scope="col">Appointment Time</th>
-                                <th scope="col">Action</th>
-                            </tr>
+                                <tr>
+                                    <th th:text="'#'"></th>
+                                    <th th:text="'Γιατρός'"></th>
+                                    <th th:text="'Ειδικότητα'"></th>
+                                    <th th:text="'Διεύθυνση'"></th>
+                                    <th th:text="'Ημερομηνία'"></th>
+                                    <th th:text="'Ώρα'"></th>
+                                    <th th:text="'Ενέργεια'"></th>
+                                </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="appointment, loopStat : ${appointments}" th:if="${appointment.booked == 0}">
-                                <th scope="row" th:text="${loopStat.index + 1}"></th>
-                                <td th:text="${appointment.doctor.firstName} + ' ' + ${appointment.doctor.lastName}"></td>
-                                <td th:text="${appointment.doctor.specialization}"></td>
-                                <td th:text="${appointment.doctor.address}"></td>
-                                <td th:text="${appointment.appointmentDate}"></td>
-                                <td th:text="${appointment.appointmentTime}"></td>
-                                <td><a th:href="@{'/appointment/' + ${appointment.id} + '/edit'}">Book</a></td>
-                            </tr>
+                                <tr th:each="appointment, loopStat : ${appointments}" th:if="${appointment.booked == 0}">
+                                    <th th:text="${loopStat.index + 1}"></th>
+                                    <td th:text="${appointment.doctor.firstName} + ' ' + ${appointment.doctor.lastName}"></td>
+                                    <td th:text="${appointment.doctor.specialization}"></td>
+                                    <td th:text="${appointment.doctor.address}"></td>
+                                    <td th:text="${appointment.appointmentDate}"></td>
+                                    <td th:text="${appointment.appointmentTime}"></td>
+                                    <td><a th:href="@{'/appointment/' + ${appointment.id} + '/edit'}" th:text="'Κλείσε το Ραντεβού'"></a></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

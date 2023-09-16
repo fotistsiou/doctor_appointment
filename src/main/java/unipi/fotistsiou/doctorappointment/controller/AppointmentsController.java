@@ -85,22 +85,6 @@ public class AppointmentsController {
         }
     }
 
-    @GetMapping("/appointment/{id}")
-    @PreAuthorize("isAuthenticated()")
-    public String getAppointment(
-        @PathVariable Long id,
-        Model model
-    ){
-        Optional<Appointment> optionalAppointment = this.appointmentService.getAppointmentById(id);
-        if (optionalAppointment.isPresent()) {
-            Appointment appointment = optionalAppointment.get();
-            model.addAttribute("appointment", appointment);
-            return "appointment_review";
-        } else {
-            return "404";
-        }
-    }
-
     @PostMapping("/appointment/{id}")
     @PreAuthorize("isAuthenticated()")
     public String bookAppointment(
@@ -119,8 +103,9 @@ public class AppointmentsController {
             existingAppointment.setPatient(optionalUser.get());
             existingAppointment.setReason(appointment.getReason());
             appointmentService.saveAppointment(existingAppointment);
+            return String.format("redirect:/appointment/my/%d?success", optionalUser.get().getId());
         }
-        return String.format("redirect:/appointment/%d?success", appointment.getId());
+        return "404";
     }
 
     @GetMapping("/appointment/my/{id}")
@@ -142,6 +127,7 @@ public class AppointmentsController {
             }
             String role = user.getRoles().toString();
             List<Appointment> appointments = appointmentService.getAvailableUserAppointments(id, role);
+            model.addAttribute("role", role);
             model.addAttribute("appointments", appointments);
             return "appointment_my";
         } else {

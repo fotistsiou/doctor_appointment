@@ -14,7 +14,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">Doctor AnySite</a>
+            <a class="navbar-brand" th:href="@{/}" th:text="'Doctor AnySite'"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -23,8 +23,13 @@
 
     <div class="container">
         <div class="row">
-            <h1 class="text-center">Doctor AnySite</h1>
-            <h2>Sorry, Page Not Found...</h2>
+            <h1 class="text-center" th:text="'Doctor AnySite'"></h1>
+            <h2 class="text-center" th:text="'Λυπούμαστε, η σελίδα δεν βρέθηκε...'"></h2>
+            <p class="text-center">
+                <button class="btn btn-primary" type="button">
+                    <a class="a_button" th:href="@{/}" th:text="'Επιστροφή στην αρχική!'"></a>
+                </button>
+            </p>
         </div>
     </div>
 </body>

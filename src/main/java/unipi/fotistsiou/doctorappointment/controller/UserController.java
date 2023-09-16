@@ -136,6 +136,6 @@ public class UserController {
             existingUser.setSpecialization(user.getSpecialization());
             userService.update(existingUser);
         }
-        return String.format("redirect:/account/info/%d?success_edit", user.getId());
+        return String.format("redirect:/account/info/%d?success", user.getId());
     }
 }

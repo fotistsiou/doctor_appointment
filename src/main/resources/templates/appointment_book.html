@@ -14,7 +14,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">Doctor AnySite</a>
+            <a class="navbar-brand" th:href="@{/}" th:text="'Doctor AnySite'"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -26,28 +26,28 @@
             <div class="col-md-6 offset-md-3">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="text-center">Book the Appointment</h2>
+                        <h2 class="text-center" th:text="'Κλείσε το Ραντεβού'"></h2>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered">
                             <tr>
-                                <th scope="row">Doctor</th>
+                                <th th:text="'Γιατρός'"></th>
                                 <td th:text="${appointment.doctor.firstName} + ' ' + ${appointment.doctor.lastName}"></td>
                             </tr>
                             <tr>
-                                <th scope="row">Specialization</th>
+                                <th th:text="'Ειδικότητα'"></th>
                                 <td th:text="${appointment.doctor.specialization}"></td>
                             </tr>
                             <tr>
-                                <th scope="row">Address</th>
+                                <th th:text="'Διεύθυνση'"></th>
                                 <td th:text="${appointment.doctor.address}"></td>
                             </tr>
                             <tr>
-                                <th scope="row">Appointment Date</th>
+                                <th th:text="'Ημερομηνία Ραντεβού'"></th>
                                 <td th:text="${appointment.appointmentDate}"></td>
                             </tr>
                             <tr>
-                                <th scope="row">Appointment Time</th>
+                                <th th:text="'Ώρα Ραντεβού'"></th>
                                 <td th:text="${appointment.appointmentTime}"></td>
                             </tr>
                         </table>
@@ -55,7 +55,7 @@
                             <input type="hidden" th:field="*{patient}" />
                             <input type="hidden" th:field="*{booked}" />
                             <div class="form-group mb-3">
-                                <label for="reason" class="form-label">Inform the doctor about the reasons for the appointment:</label>
+                                <label for="reason" class="form-label" th:text="'Ενημέρωσε τον γιατρό για τον λόγο επίσκεψής σου:'"></label>
                                 <textarea
                                    class="form-control"
                                    id="reason"
@@ -70,8 +70,8 @@
                                 </p>
                             </div>
                             <div class="form-group mb-3">
-                                <button class="btn btn-primary" type="submit">Book Appointment</button>
-                                <button class="btn btn-danger" type="button"><a th:href="@{/}">Cancel</a></button>
+                                <button class="btn btn-primary" type="submit" th:text="'Υποβολή'"></button>
+                                <button class="btn btn-danger" type="button"><a th:href="@{/}" th:text="'Ακύρωση'"></a></button>
                             </div>
                         </form>
                     </div>

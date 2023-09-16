@@ -14,7 +14,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="header">
         <div class="container-fluid">
-            <a class="navbar-brand" th:href="@{/}">Doctor AnySite</a>
+            <a class="navbar-brand" th:href="@{/}" th:text="'Doctor AnySite'"></a>
             <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
                     data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
                 <span class="navbar-toggler-icon"></span>
@@ -27,17 +27,17 @@
             <div class="col-md-6 offset-md-3">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="text-center">Edit My Account Info</h2>
+                        <h2 class="text-center" th:text="'Επεξεργασία Πληροφοριών Λογαριασμού'"></h2>
                     </div>
                     <div class="card-body">
                         <form action="#" method="POST" role="form" th:action="@{'/account/info/edit/{id}' (id=${user.id})}"
                               th:object="${user}">
                             <div class="form-group mb-3">
-                                <label class="form-label" for="firstName">First Name</label>
+                                <label class="form-label" for="firstName" th:text="'Όνομα'"></label>
                                 <input class="form-control"
                                        id="firstName"
                                        name="firstName"
-                                       placeholder="Enter first name"
+                                       placeholder="Πληκτρολόγησε το όνομα σου..."
                                        th:field="*{firstName}"
                                        type="text"
                                 />
@@ -47,11 +47,11 @@
                                 </p>
                             </div>
                             <div class="form-group mb-3">
-                                <label class="form-label" for="lastName">Last Name</label>
+                                <label class="form-label" for="lastName" th:text="'Επίθετο'"></label>
                                 <input class="form-control"
                                        id="lastName"
                                        name="lastName"
-                                       placeholder="Enter last name"
+                                       placeholder="Πληκτρολόγησε το επίθετό σου..."
                                        th:field="*{lastName}"
                                        type="text"
                                 />
@@ -61,11 +61,11 @@
                                 </p>
                             </div>
                             <div class="form-group mb-3">
-                                <label class="form-label" for="email">Email</label>
+                                <label class="form-label" for="email" th:text="'Email'"></label>
                                 <input class="form-control"
                                        id="email"
                                        name="email"
-                                       placeholder="Enter email address"
+                                       placeholder="Πληκτρολόγησε το email σου..."
                                        th:field="*{email}"
                                        type="email"
                                 />
@@ -75,11 +75,11 @@
                                 </p>
                             </div>
                             <div class="form-group mb-3">
-                                <label class="form-label" for="telephone">Telephone</label>
+                                <label class="form-label" for="telephone" th:text="'Τηλέφωνο Επικοινωνίας'"></label>
                                 <input class="form-control"
                                        id="telephone"
                                        name="telephone"
-                                       placeholder="Enter telephone"
+                                       placeholder="Πληκτρολόγησε το τηλέφωνο επικοινωνίας σου..."
                                        th:field="*{telephone}"
                                        type="tel"
                                 />
@@ -89,11 +89,11 @@
                                 </p>
                             </div>
                             <div class="form-group mb-3" th:if="${user.address != null}">
-                                <label class="form-label" for="address">Address</label>
+                                <label class="form-label" for="address" th:text="'Διεύθυνση'"></label>
                                 <input class="form-control"
                                        id="address"
                                        name="address"
-                                       placeholder="Enter address"
+                                       placeholder="Πληκτρολόγησε τη διεύθυνση του ιατρείου σου..."
                                        th:field="*{address}"
                                        type="text"
                                 />
@@ -103,11 +103,11 @@
                                 </p>
                             </div>
                             <div class="form-group mb-3" th:if="${user.specialization != null}">
-                                <label class="form-label" for="specialization">Specialization</label>
+                                <label class="form-label" for="specialization" th:text="'Ειδικότητα'"></label>
                                 <input class="form-control"
                                        id="specialization"
                                        name="specialization"
-                                       placeholder="Enter specialization"
+                                       placeholder="Πληκτρολόγησε την ειδικότητα σου..."
                                        th:field="*{specialization}"
                                        type="text"
                                 />
@@ -117,7 +117,7 @@
                                 </p>
                             </div>
                             <div class="form-group mb-3">
-                                <button class="btn btn-primary" type="submit">Save</button>
+                                <button class="btn btn-primary" type="submit" th:text="'Αποθήκευση'"></button>
                             </div>
                         </form>
                     </div>

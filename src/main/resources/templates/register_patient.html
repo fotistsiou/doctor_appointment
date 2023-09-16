@@ -14,7 +14,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="header">
         <div class="container-fluid">
-            <a class="navbar-brand" th:href="@{/}">Doctor AnySite</a>
+            <a class="navbar-brand" th:href="@{/}" th:text="'Doctor AnySite'"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -26,12 +26,12 @@
             <div class="col-md-6 offset-md-3">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="text-center">Registration as Patient</h2>
+                        <h2 class="text-center" th:text="'Φόρμα Εγγραφής Ασθενή'"></h2>
                     </div>
                     <div class="card-body">
                         <form action="#" role="form" th:action="@{/register/ROLE_PATIENT}" th:object="${user}" method="POST">
                             <div class="form-group mb-3">
-                                <label for="firstNameUser" class="form-label">First Name</label>
+                                <label for="firstNameUser" class="form-label" th:text="'Όνομα'"></label>
                                 <input class="form-control"
                                        id="firstNameUser"
                                        name="firstNameUser"
@@ -45,7 +45,7 @@
                                 </p>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="lastNameUser" class="form-label">Last Name</label>
+                                <label for="lastNameUser" class="form-label" th:text="'Επώνυμο'"></label>
                                 <input class="form-control"
                                        id="lastNameUser"
                                        name="lastNameUser"
@@ -59,7 +59,7 @@
                                 </p>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="emailUser" class="form-label">Email</label>
+                                <label for="emailUser" class="form-label" th:text="'Email'"></label>
                                 <input class="form-control"
                                        id="emailUser"
                                        name="emailUser"
@@ -73,7 +73,7 @@
                                 </p>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="passwordUser" class="form-label">Password</label>
+                                <label for="passwordUser" class="form-label" th:text="'Κωδικός'"></label>
                                 <input class="form-control"
                                        id="passwordUser"
                                        name="passwordUser"
@@ -87,7 +87,7 @@
                                 </p>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="telephoneUser" class="form-label">Telephone</label>
+                                <label for="telephoneUser" class="form-label" th:text="'Τηλέφωνο'"></label>
                                 <input class="form-control"
                                        id="telephoneUser"
                                        name="telephoneUser"
@@ -101,8 +101,8 @@
                                 </p>
                             </div>
                             <div class="form-group mb-3">
-                                <button class="btn btn-primary" type="submit">Register</button>
-                                <span>Already registered? <a th:href="@{/login}">Login here</a></span>
+                                <button class="btn btn-primary" type="submit" th:text="'Εγγραφή'"></button>
+                                <span>Already registered? <a th:href="@{/login}" th:text="'Σύνδεση εδώ'"></a></span>
                             </div>
                         </form>
                     </div>

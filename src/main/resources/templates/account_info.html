@@ -14,7 +14,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">Doctor AnySite</a>
+        <a class="navbar-brand" th:href="@{/}" th:text="'Doctor AnySite'"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -25,44 +25,41 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div th:if="${param.success}">
-                <div class="alert alert-success">You've successfully booked an appointment!</div>
-            </div>
-            <div th:if="${param.success_edit}">
-                <div class="alert alert-success">You've successfully updated your account info!</div>
+                <div class="alert alert-success" th:text="'Ενημέρωσες με επιτυχία τα στοιχεία του λογαριασμού σου!'"></div>
             </div>
             <div class="card">
                 <div class="card-header">
-                    <h2 class="text-center">My Account Info</h2>
+                    <h2 class="text-center" th:text="'Πληροφορίες Λογαριασμού'"></h2>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">
                         <tr>
-                            <th scope="row">First Name</th>
+                            <th th:text="'Όνομα'"></th>
                             <td th:text="${user.firstName}"></td>
                         </tr>
                         <tr>
-                            <th scope="row">Last Name</th>
+                            <th th:text="'Επίθετο'"></th>
                             <td th:text="${user.lastName}"></td>
                         </tr>
                         <tr>
-                            <th scope="row">Email</th>
+                            <th th:text="'Email'"></th>
                             <td th:text="${user.email}"></td>
                         </tr>
                         <tr>
-                            <th scope="row">Telephone</th>
+                            <th th:text="'Τηλέφωνο Επικοινωνίας'"></th>
                             <td th:text="${user.telephone}"></td>
                         </tr>
                         <tr th:if="${user.address != null}">
-                            <th scope="row">Address</th>
+                            <th th:text="'Διεύθυνση'"></th>
                             <td th:text="${user.address}"></td>
                         </tr>
                         <tr th:if="${user.specialization != null}">
-                            <th scope="row">Specialization</th>
+                            <th th:text="'Ειδικότητα'"></th>
                             <td th:text="${user.specialization}"></td>
                         </tr>
                     </table>
                     <div>
-                        <a class="text-right" th:href="@{'/account/info/edit/' + ${user.id}}">Edit</a>
+                        <a class="text-right" th:href="@{'/account/info/edit/' + ${user.id}}" th:text="'Επεξεργασία'"></a>
                     </div>
                 </div>
             </div>

@@ -14,7 +14,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="header">
         <div class="container-fluid">
-            <a class="navbar-brand" th:href="@{/}">Doctor AnySite</a>
+            <a class="navbar-brand" th:href="@{/}" th:text="'Doctor AnySite'"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -25,22 +25,22 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div th:if="${param.success}">
-                    <div class="alert alert-success">You've successfully created an appointment!</div>
+                    <div class="alert alert-success" th:text="'Δημιούργησες με επιτυχία ένα ραντεβού!'"></div>
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="text-center">Create an Appointment</h2>
+                        <h2 class="text-center" th:text="'Δημιουργία Ραντεβού'"></h2>
                     </div>
                     <div class="card-body">
                         <form action="#" role="form" th:action="@{'/appointment/new'}" th:object="${appointment}" method="POST">
                             <input type="hidden" th:field="*{doctor}" />
                             <input type="hidden" th:field="*{booked}" />
                             <div class="form-group mb-3">
-                                <label for="appointmentDate" class="form-label">Appointment Date</label>
+                                <label for="appointmentDate" class="form-label" th:text="'Ημερομηνία Ραντεβού'"></label>
                                 <input class="form-control"
                                        id="appointmentDate"
                                        name="appointmentDate"
-                                       placeholder="Enter a date for an appointment"
+                                       placeholder="Πληκτρολόγησε την ημερομήνία του ραντεβού..."
                                        th:field="*{appointmentDate}"
                                        type="date"
                                 />
@@ -50,11 +50,11 @@
                                 </p>
                             </div>
                             <div class="form-group mb-3">
-                                <label for="appointmentTime" class="form-label">Appointment Time</label>
+                                <label for="appointmentTime" class="form-label" th:text="'Ώρα Ραντεβού'"></label>
                                 <input class="form-control"
                                        id="appointmentTime"
                                        name="appointmentTime"
-                                       placeholder="Enter a date for an appointment"
+                                       placeholder="Πληκτρολόγησε την ώρα του ραντεβού..."
                                        th:field="*{appointmentTime}"
                                        type="time"
                                 />
@@ -64,8 +64,8 @@
                                 </p>
                             </div>
                             <div class="form-group mb-3">
-                                <button class="btn btn-primary" type="submit">Create Appointment</button>
-                                <button class="btn btn-danger" type="button"><a th:href="@{/}">Cancel</a></button>
+                                <button class="btn btn-primary" type="submit" th:text="'Δημιουργία'"></button>
+                                <button class="btn btn-danger" type="button"><a th:href="@{/}" th:text="'Ακύρωση'"></a></button>
                             </div>
                         </form>
                     </div>
