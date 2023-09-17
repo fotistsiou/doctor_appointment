@@ -12,59 +12,77 @@
     <script type="text/javascript" th:src="@{/js/actions.js}"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/}" th:text="'Doctor AnySite'"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</nav>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <div th:if="${param.success}">
-                <div class="alert alert-success" th:text="'Ενημέρωσες με επιτυχία τα στοιχεία του λογαριασμού σου!'"></div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/}" th:text="'Doctor AnySite |'"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_DOCTOR')">
+                        <a class="nav-link active" aria-current="page" th:href="@{/appointment/new}" th:text="'Νέο Ραντεβού'"></a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_PATIENT')">
+                        <a class="nav-link active" aria-current="page" th:href="@{/appointment/all}" th:text="'Νέο Ραντεβού'"></a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link active" aria-current="page" th:href="@{'/appointment/my/' + ${user.id}}" th:text="'Τα Ραντεβού Μου'"></a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <form action="#" role="form" th:action="@{/logout}" method="POST">
+                            <a class="nav-link active" aria-current="page"><button type="submit" th:text="'Αποσύνδεση'"></button></a>
+                        </form>
+                    </li>
+                </ul>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="text-center" th:text="'Πληροφορίες Λογαριασμού'"></h2>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div th:if="${param.success}">
+                    <div class="alert alert-success" th:text="'Ενημέρωσες με επιτυχία τα στοιχεία του λογαριασμού σου!'"></div>
                 </div>
-                <div class="card-body">
-                    <table class="table table-bordered">
-                        <tr>
-                            <th th:text="'Όνομα'"></th>
-                            <td th:text="${user.firstName}"></td>
-                        </tr>
-                        <tr>
-                            <th th:text="'Επίθετο'"></th>
-                            <td th:text="${user.lastName}"></td>
-                        </tr>
-                        <tr>
-                            <th th:text="'Email'"></th>
-                            <td th:text="${user.email}"></td>
-                        </tr>
-                        <tr>
-                            <th th:text="'Τηλέφωνο Επικοινωνίας'"></th>
-                            <td th:text="${user.telephone}"></td>
-                        </tr>
-                        <tr th:if="${user.address != null}">
-                            <th th:text="'Διεύθυνση'"></th>
-                            <td th:text="${user.address}"></td>
-                        </tr>
-                        <tr th:if="${user.specialization != null}">
-                            <th th:text="'Ειδικότητα'"></th>
-                            <td th:text="${user.specialization}"></td>
-                        </tr>
-                    </table>
-                    <div>
-                        <a class="text-right" th:href="@{'/account/info/edit/' + ${user.id}}" th:text="'Επεξεργασία'"></a>
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-center" th:text="'Πληροφορίες Λογαριασμού'"></h2>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th th:text="'Όνομα'"></th>
+                                <td th:text="${user.firstName}"></td>
+                            </tr>
+                            <tr>
+                                <th th:text="'Επίθετο'"></th>
+                                <td th:text="${user.lastName}"></td>
+                            </tr>
+                            <tr>
+                                <th th:text="'Email'"></th>
+                                <td th:text="${user.email}"></td>
+                            </tr>
+                            <tr>
+                                <th th:text="'Τηλέφωνο Επικοινωνίας'"></th>
+                                <td th:text="${user.telephone}"></td>
+                            </tr>
+                            <tr th:if="${user.address != null}">
+                                <th th:text="'Διεύθυνση'"></th>
+                                <td th:text="${user.address}"></td>
+                            </tr>
+                            <tr th:if="${user.specialization != null}">
+                                <th th:text="'Ειδικότητα'"></th>
+                                <td th:text="${user.specialization}"></td>
+                            </tr>
+                        </table>
+                        <p>
+                            <button class="btn btn-secondary" type="button"><a class="a_button" th:href="@{'/account/info/edit/' + ${user.id}}" th:text="'Επεξεργασία'"></a></button>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>

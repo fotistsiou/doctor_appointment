@@ -19,7 +19,10 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String getHome(Model model, Principal principal) {
+    public String getHome(
+        Model model,
+        Principal principal
+    ){
         String authUsername = "anonymousUser";
         if (principal != null) {
             authUsername = principal.getName();

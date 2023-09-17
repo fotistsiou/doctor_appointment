@@ -59,8 +59,20 @@ public class AppointmentsController {
     }
 
     @GetMapping("/appointment/all")
-    @PreAuthorize("isAuthenticated()")
-    public String getAllAppointments(Model model) {
+    @PreAuthorize("hasRole('ROLE_PATIENT')")
+    public String getAllAppointments(
+        Model model,
+        Principal principal
+    ){
+        String authUsername = "anonymousUser";
+        if (principal != null) {
+            authUsername = principal.getName();
+        }
+        Optional<User> optionalUser = userService.findOneByEmail(authUsername);
+        if (optionalUser.isPresent()) {
+            Long userId = optionalUser.get().getId();
+            model.addAttribute("userId", userId);
+        }
         List<Appointment> appointments = appointmentService.getAvailableAppointments();
         model.addAttribute("appointments", appointments);
         return "appointment_all";
@@ -123,8 +135,10 @@ public class AppointmentsController {
                 return "404";
             }
             String role = user.getRoles().toString();
+            Long userId = user.getId();
             List<Appointment> appointments = appointmentService.getAvailableUserAppointments(id, role);
             model.addAttribute("role", role);
+            model.addAttribute("userId", userId);
             model.addAttribute("appointments", appointments);
             return "appointment_my";
         } else {
