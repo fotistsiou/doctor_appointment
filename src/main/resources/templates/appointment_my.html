@@ -27,6 +27,12 @@
                 <div th:if="${param.success}">
                     <div class="alert alert-success" th:text="'Έκλεισες με επιτυχία το ραντεβού σου!'"></div>
                 </div>
+                <div th:if="${param.success_cancel}">
+                    <div class="alert alert-success" th:text="'Ακύρωσες με επιτυχία το ραντεβού σου!'"></div>
+                </div>
+                <div th:if="${param.success_delete}">
+                    <div class="alert alert-success" th:text="'Διέγραψες με επιτυχία το ραντεβού σου!'"></div>
+                </div>
                 <div class="card">
                     <div class="card-header">
                         <h2 class="text-center" th:text="'Τα Ραντεβού Μου'"></h2>
@@ -43,6 +49,7 @@
                                     <th scope="col" th:if="${role == '[ROLE_DOCTOR]'}" th:text="'Αιτία Ραντεβού'"></th>
                                     <th scope="col" th:text="'Ημερομηνία Ραντεβού'"></th>
                                     <th scope="col" th:text="'Ώρα Ραντεβού'"></th>
+                                    <th scope="col" th:text="'Ενέργεια'"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,6 +64,12 @@
                                     <td th:if="${role == '[ROLE_DOCTOR]' && appointment.patient == null}" th:text="'---'"></td>
                                     <td th:text="${appointment.appointmentDate}"></td>
                                     <td th:text="${appointment.appointmentTime}"></td>
+                                    <td th:if="${role == '[ROLE_PATIENT]'}">
+                                        <a th:href="@{'/appointment/cancel/{appId}/{userId}' (appId=${appointment.id}, userId=${appointment.patient.id})}" th:text="'Ακύρωση'"></a>
+                                    </td>
+                                    <td th:if="${role == '[ROLE_DOCTOR]'}">
+                                        <a th:href="@{'/appointment/delete/{appId}/{userId}' (appId=${appointment.id}, userId=${appointment.doctor.id})}" th:text="'Διαγραφή'"></a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

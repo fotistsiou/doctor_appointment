@@ -9,15 +9,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import unipi.fotistsiou.doctorappointment.entity.Appointment;
-import unipi.fotistsiou.doctorappointment.entity.Role;
 import unipi.fotistsiou.doctorappointment.entity.User;
-import unipi.fotistsiou.doctorappointment.repository.RoleRepository;
 import unipi.fotistsiou.doctorappointment.service.AppointmentService;
 import unipi.fotistsiou.doctorappointment.service.UserService;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Controller
 public class AppointmentsController {
@@ -133,5 +130,62 @@ public class AppointmentsController {
         } else {
             return "404";
         }
+    }
+
+    @GetMapping("/appointment/cancel/{appId}/{userId}")
+    @PreAuthorize("hasRole('ROLE_PATIENT')")
+    public String cancelAppointment(
+            @PathVariable Long appId,
+            @PathVariable Long userId,
+            Principal principal
+    ){
+        String authUsername = "anonymousUser";
+        if (principal != null) {
+            authUsername = principal.getName();
+        }
+        Optional<User> optionalUser = this.userService.getUserById(userId);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            if (!user.getEmail().equals(authUsername)) {
+                return "404";
+            }
+            Optional<Appointment> optionalAppointment = appointmentService.getAppointmentById(appId);
+            if (optionalAppointment.isPresent() && optionalUser.isPresent()) {
+                Appointment existingAppointment = optionalAppointment.get();
+                existingAppointment.setPatient(null);
+                existingAppointment.setReason(null);
+                existingAppointment.setBooked(0);
+                appointmentService.cancelAppointment(existingAppointment);
+                return String.format("redirect:/appointment/my/%d?success", optionalUser.get().getId());
+            }
+        }
+        return "404";
+    }
+
+    @GetMapping("/appointment/delete/{appId}/{userId}")
+    @PreAuthorize("hasRole('ROLE_DOCTOR')")
+    public String deleteAppointment(
+            @PathVariable Long appId,
+            @PathVariable Long userId,
+            Principal principal
+    ){
+        String authUsername = "anonymousUser";
+        if (principal != null) {
+            authUsername = principal.getName();
+        }
+        Optional<User> optionalUser = this.userService.getUserById(userId);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            if (!user.getEmail().equals(authUsername)) {
+                return "404";
+            }
+            Optional<Appointment> optionalAppointment = appointmentService.getAppointmentById(appId);
+            if (optionalAppointment.isPresent()) {
+                Appointment appointment = optionalAppointment.get();
+                appointmentService.deleteAppointment(appointment);
+                return String.format("redirect:/appointment/my/%d?success_delete", optionalUser.get().getId());
+            }
+        }
+        return "404";
     }
 }
