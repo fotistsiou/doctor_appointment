@@ -40,11 +40,12 @@
     </nav>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <div th:if="${param.success}">
-                    <div class="alert alert-success" th:text="'Ενημέρωσες με επιτυχία τα στοιχεία του λογαριασμού σου!'"></div>
-                </div>
+        <div class="col col-md-12">
+            <div th:if="${param.success}">
+                <div class="alert alert-success" th:text="'Ενημέρωσες με επιτυχία τα στοιχεία του λογαριασμού σου!'"></div>
+            </div>
+            <div class="custom_img_card">
+                <img th:src="@{/images/img9.png}"/>
                 <div class="card">
                     <div class="card-header">
                         <h2 class="text-center" th:text="'Πληροφορίες Λογαριασμού'"></h2>
@@ -76,9 +77,11 @@
                                 <td th:text="${user.specialization}"></td>
                             </tr>
                         </table>
-                        <p>
-                            <button class="btn btn-secondary" type="button"><a class="a_button" th:href="@{'/account/info/edit/' + ${user.id}}" th:text="'Επεξεργασία'"></a></button>
-                        </p>
+                        <div class="mb-3">
+                            <button class="btn btn-dark" type="button">
+                                <a class="a_button" th:href="@{'/account/info/edit/' + ${user.id}}" th:text="'Επεξεργασία'"></a>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

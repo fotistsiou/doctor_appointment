@@ -23,8 +23,8 @@
     </nav>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
+        <div class="col col-md-12">
+            <div class="custom_img_card">
                 <div class="card">
                     <div class="card-header">
                         <h2 class="text-center" th:text="'Επεξεργασία Πληροφοριών Λογαριασμού'"></h2>
@@ -36,7 +36,6 @@
                                 <input class="form-control"
                                        id="firstName"
                                        name="firstName"
-                                       placeholder="Πληκτρολόγησε το όνομα σου..."
                                        th:field="*{firstName}"
                                        type="text"
                                 />
@@ -50,7 +49,6 @@
                                 <input class="form-control"
                                        id="lastName"
                                        name="lastName"
-                                       placeholder="Πληκτρολόγησε το επίθετό σου..."
                                        th:field="*{lastName}"
                                        type="text"
                                 />
@@ -64,7 +62,6 @@
                                 <input class="form-control"
                                        id="email"
                                        name="email"
-                                       placeholder="Πληκτρολόγησε το email σου..."
                                        th:field="*{email}"
                                        type="email"
                                 />
@@ -78,7 +75,6 @@
                                 <input class="form-control"
                                        id="telephone"
                                        name="telephone"
-                                       placeholder="Πληκτρολόγησε το τηλέφωνο επικοινωνίας σου..."
                                        th:field="*{telephone}"
                                        type="tel"
                                 />
@@ -92,7 +88,6 @@
                                 <input class="form-control"
                                        id="address"
                                        name="address"
-                                       placeholder="Πληκτρολόγησε τη διεύθυνση του ιατρείου σου..."
                                        th:field="*{address}"
                                        type="text"
                                 />
@@ -106,7 +101,6 @@
                                 <input class="form-control"
                                        id="specialization"
                                        name="specialization"
-                                       placeholder="Πληκτρολόγησε την ειδικότητα σου..."
                                        th:field="*{specialization}"
                                        type="text"
                                 />
@@ -121,6 +115,7 @@
                         </form>
                     </div>
                 </div>
+                <img th:src="@{/images/img11.png}"/>
             </div>
         </div>
     </div>

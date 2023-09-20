@@ -22,46 +22,45 @@
     </nav>
 
     <div class="container">
-        <div class="row">
-            <h1 class="text-center" sec:authorize="isAuthenticated()" th:text="'Καλώς όρισες, ' + ${username} + ' στο Doctor AnySite!'"></h1>
-            <h1 class="text-center" sec:authorize="!isAuthenticated()" th:text="'Καλώς όρισες, στο Doctor AnySite!'"></h1>
-            <p class="text-center" sec:authorize="!isAuthenticated()">
-                <button class="btn btn-secondary">
-                    <a class="a_button" th:href="@{/register}" th:text="'Εγγραφή'"></a>
-                </button>
-            </p>
-            <p class="text-center" sec:authorize="!isAuthenticated()">
-                <button class="btn btn-secondary">
-                    <a class="a_button" th:href="@{/login}" th:text="'Σύνδεση'"></a>
-                </button>
-            </p>
-            <p class="text-center" sec:authorize="hasRole('ROLE_DOCTOR')">
-                <button class="btn btn-secondary">
-                    <a class="a_button" th:href="@{/appointment/new}" th:text="'Νέο Ραντεβού'"></a>
-                </button>
-            </p>
-            <p class="text-center" sec:authorize="hasRole('ROLE_PATIENT')">
-                <button class="btn btn-secondary">
-                    <a class="a_button" th:href="@{/appointment/all}" th:text="'Νέο Ραντεβού'"></a>
-                </button>
-            </p>
-            <p class="text-center" sec:authorize="isAuthenticated()">
-                <button class="btn btn-secondary">
-                    <a class="a_button" th:href="@{'/account/info/' + ${userId}}" th:text="'Ο Λογαριασμός Μου'"></a>
-                </button>
-            </p>
-            <p class="text-center" sec:authorize="isAuthenticated()">
-                <button class="btn btn-secondary">
-                    <a class="a_button" th:href="@{'/appointment/my/' + ${userId}}" th:text="'Τα Ραντεβού Μου'"></a>
-                </button>
-            </p>
-            <form action="#" role="form" th:action="@{/logout}" method="POST">
-                <p class="text-center" sec:authorize="isAuthenticated()">
-                    <button class="btn btn-secondary" type="submit">
-                        <a class="a_button" th:text="'Αποσύνδεση'"></a>
-                    </button>
-                </p>
-            </form>
+        <div class="col col-md-12">
+            <div class="custom_img_card">
+                <img th:src="@{/images/img1.png}"/>
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-center" sec:authorize="isAuthenticated()" th:text="'Καλώς όρισες ' + ${username} + ' στο Doctor AnySite!'"></h2>
+                        <h2 class="text-center" sec:authorize="!isAuthenticated()" th:text="'Καλώς όρισες στο Doctor AnySite!'"></h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid gap-2 text-center" sec:authorize="!isAuthenticated()">
+                            <button class="btn btn-dark" type="button">
+                                <a class="a_button" th:href="@{/register}" th:text="'Εγγραφή'"></a>
+                            </button>
+                            <button class="btn btn-dark" type="button">
+                                <a class="a_button" th:href="@{/login}" th:text="'Σύνδεση'"></a>
+                            </button>
+                        </div>
+                        <div class="d-grid gap-2 text-center" sec:authorize="isAuthenticated()">
+                            <button class="btn btn-dark" type="button" sec:authorize="hasRole('ROLE_DOCTOR')">
+                                <a class="a_button" th:href="@{/appointment/new}" th:text="'Νέο Ραντεβού'"></a>
+                            </button>
+                            <button class="btn btn-dark" type="button" sec:authorize="hasRole('ROLE_PATIENT')">
+                                <a class="a_button" th:href="@{/appointment/all}" th:text="'Νέο Ραντεβού'"></a>
+                            </button>
+                            <button class="btn btn-dark" type="button">
+                                <a class="a_button" th:href="@{'/account/info/' + ${userId}}" th:text="'Ο Λογαριασμός Μου'"></a>
+                            </button>
+                            <button class="btn btn-dark" type="button">
+                                <a class="a_button" th:href="@{'/appointment/my/' + ${userId}}" th:text="'Τα Ραντεβού Μου'"></a>
+                            </button>
+                            <form action="#" role="form" th:action="@{/logout}" method="POST">
+                                <button class="btn btn-dark" type="submit" sec:authorize="isAuthenticated()">
+                                    <a class="a_button" th:text="'Αποσύνδεση'"></a>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

@@ -1,3 +1,8 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+}
 .btn-danger a,
 .btn-danger a:hover {
     color: #fff;
@@ -15,6 +20,15 @@
     color: #fff;
     text-decoration: none;
 }
-.container {
-    margin-top: 1em;
+.custom_img_card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.custom_img_card img {
+    width: 20rem;
+}
+button {
+    width: 100%;
 }

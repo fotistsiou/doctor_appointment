@@ -22,17 +22,18 @@
       </nav>
 
       <div class="container">
-          <div class="row">
-              <div class="col-md-6 offset-md-3">
-                  <div th:if="${param.error}">
-                      <div class="alert alert-danger" th:text="'Μη έγκυρο email ή/και κωδικός.'"></div>
-                  </div>
-                  <div th:if="${param.logout}">
-                      <div class="alert alert-success" th:text="'Έχεις αποσυνδεθεί.'"></div>
-                  </div>
-                  <div th:if="${param.success_register}">
-                      <div class="alert alert-info" th:text="'Έχεις εγγραφεί επιτυχώς στο Doctor AnySite! Συνδέσου για να εξερευνήσεις την εφαρμογή!'"></div>
-                  </div>
+          <div class="col col-md-12">
+              <div th:if="${param.error}">
+                  <div class="alert alert-danger" th:text="'Μη έγκυρο email ή/και κωδικός.'"></div>
+              </div>
+              <div th:if="${param.logout}">
+                  <div class="alert alert-success" th:text="'Έχεις αποσυνδεθεί.'"></div>
+              </div>
+              <div th:if="${param.success_register}">
+                  <div class="alert alert-info" th:text="'Έχεις εγγραφεί επιτυχώς στο Doctor AnySite! Συνδέσου για να εξερευνήσεις την εφαρμογή!'"></div>
+              </div>
+              <div class="custom_img_card">
+                  <img th:src="@{/images/img5.png}"/>
                   <div class="card">
                       <div class="card-header">
                           <h3 class="text-center" th:text="'Φόρμα Εισόδου'"></h3>
@@ -45,7 +46,6 @@
                                          id="username"
                                          name="username"
                                          class="form-control"
-                                         placeholder="Email"
                                   />
                               </div>
                               <div class="mb-3">
@@ -54,17 +54,16 @@
                                          id="password"
                                          name="password"
                                          class="form-control"
-                                         placeholder="Password"
                                   />
                               </div>
                               <div class="mb-3">
                                   <button type="submit" class="btn btn-primary" th:text="'Σύνδεση'"></button>
-                                  <p>
-                                      <span th:text="'Δεν έχεις λογαριασμό;'"></span>
-                                      <a th:href="@{/register/doctor}" th:text="'Εγγραφή ως Γιατρός'"></a>
-                                      <span th:text="' | '"></span>
-                                      <a th:href="@{/register/patient}" th:text="'Εγγραφή ως Ασθενής'"></a>
-                                  </p>
+                              </div>
+                              <div class="mb-3">
+                                  <span th:text="'Δεν έχεις λογαριασμό;'"></span>
+                                  <a th:href="@{/register/doctor}" th:text="'Εγγραφή ως Γιατρός'"></a>
+                                  <span th:text="' | '"></span>
+                                  <a th:href="@{/register/patient}" th:text="'Εγγραφή ως Ασθενής'"></a>
                               </div>
                           </form>
                       </div>

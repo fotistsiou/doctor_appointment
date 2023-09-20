@@ -22,11 +22,11 @@
     </nav>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <div th:if="${param.success}">
-                    <div class="alert alert-success" th:text="'Δημιούργησες με επιτυχία ένα ραντεβού!'"></div>
-                </div>
+        <div class="col col-md-12">
+            <div th:if="${param.success}">
+                <div class="alert alert-success" th:text="'Δημιούργησες με επιτυχία ένα ραντεβού!'"></div>
+            </div>
+            <div class="custom_img_card">
                 <div class="card">
                     <div class="card-header">
                         <h2 class="text-center" th:text="'Δημιουργία Ραντεβού'"></h2>
@@ -40,7 +40,6 @@
                                 <input class="form-control"
                                        id="appointmentDate"
                                        name="appointmentDate"
-                                       placeholder="Πληκτρολόγησε την ημερομήνία του ραντεβού..."
                                        th:field="*{appointmentDate}"
                                        type="date"
                                 />
@@ -54,7 +53,6 @@
                                 <input class="form-control"
                                        id="appointmentTime"
                                        name="appointmentTime"
-                                       placeholder="Πληκτρολόγησε την ώρα του ραντεβού..."
                                        th:field="*{appointmentTime}"
                                        type="time"
                                 />
@@ -65,11 +63,14 @@
                             </div>
                             <div class="form-group mb-3">
                                 <button class="btn btn-primary" type="submit" th:text="'Δημιουργία'"></button>
+                            </div>
+                            <div class="form-group mb-3">
                                 <button class="btn btn-danger" type="button"><a th:href="@{/}" th:text="'Ακύρωση'"></a></button>
                             </div>
                         </form>
                     </div>
                 </div>
+                <img th:src="@{/images/img10.png}"/>
             </div>
         </div>
     </div>

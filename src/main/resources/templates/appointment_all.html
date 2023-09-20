@@ -37,11 +37,11 @@
     </nav>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 offset-md-1">
-                <div th:if="${param.success}">
-                    <div class="alert alert-success" th:text="'Έκλεισες με επιτυχία ένα ραντεβού!'"></div>
-                </div>
+        <div class="col col-md-12">
+            <div th:if="${param.success}">
+                <div class="alert alert-success" th:text="'Έκλεισες με επιτυχία ένα ραντεβού!'"></div>
+            </div>
+            <div class="custom_img_card">
                 <div class="card">
                     <div class="card-header">
                         <h2 class="text-center" th:text="'Διαθέσιμα Ραντεβού'"></h2>
@@ -73,6 +73,7 @@
                         </table>
                     </div>
                 </div>
+                <img th:src="@{/images/img8.png}"/>
             </div>
         </div>
     </div>

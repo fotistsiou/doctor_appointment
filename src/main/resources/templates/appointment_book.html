@@ -22,8 +22,9 @@
     </nav>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
+        <div class="col col-md-12">
+            <div class="custom_img_card">
+                <img th:src="@{/images/img6.png}"/>
                 <div class="card">
                     <div class="card-header">
                         <h2 class="text-center" th:text="'Κλείσε το Ραντεβού'"></h2>
@@ -71,6 +72,8 @@
                             </div>
                             <div class="form-group mb-3">
                                 <button class="btn btn-primary" type="submit" th:text="'Υποβολή'"></button>
+                            </div>
+                            <div class="form-group mb-3">
                                 <button class="btn btn-danger" type="button"><a th:href="@{/}" th:text="'Ακύρωση'"></a></button>
                             </div>
                         </form>
