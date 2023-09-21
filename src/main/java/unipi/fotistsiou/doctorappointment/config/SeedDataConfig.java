@@ -27,7 +27,7 @@ public class SeedDataConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Optional<User> optionalUser = userService.findOneByEmail("g.papatsikhs@domain.com");
+        Optional<User> optionalUser = userService.findOneByEmail("f.tsioumas@domain.com");
         if (optionalUser.isEmpty()) {
             Role doctor = new Role();
             doctor.setName("ROLE_DOCTOR");
@@ -40,9 +40,9 @@ public class SeedDataConfig implements CommandLineRunner {
             User user1 = new User();
             User user2 = new User();
 
-            user1.setFirstName("Γιάννης");
-            user1.setLastName("Παπατσίκης");
-            user1.setEmail("g.papatsikhs@domain.com");
+            user1.setFirstName("Φώτης");
+            user1.setLastName("Τσιούμας");
+            user1.setEmail("f.tsioumas@domain.com");
             user1.setPassword("1234!@#$qwer");
             user1.setTelephone("2101245789");
             user1.setAddress("Πλάτωνος 134, 17674 Καλλιθέα");
@@ -51,9 +51,9 @@ public class SeedDataConfig implements CommandLineRunner {
             roleRepository.findByName("ROLE_DOCTOR").ifPresent(roles1::add);
             user1.setRoles(roles1);
 
-            user2.setFirstName("Πέτρος");
-            user2.setLastName("Γαλατας");
-            user2.setEmail("p.galatas@domain.com");
+            user2.setFirstName("Άσπα");
+            user2.setLastName("Σιδέρη");
+            user2.setEmail("a.sideri@domain.com");
             user2.setPassword("1234!@#$qwer");
             user2.setTelephone("2101248963");
             Set<Role> roles2 = new HashSet<>();
