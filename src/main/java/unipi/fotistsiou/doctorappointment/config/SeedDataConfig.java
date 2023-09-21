@@ -60,8 +60,8 @@ public class SeedDataConfig implements CommandLineRunner {
             roleService.findRoleByName("ROLE_PATIENT").ifPresent(roles2::add);
             user2.setRoles(roles2);
 
-            userService.save(user1, user1.getRoles().toString());
-            userService.save(user2, user1.getRoles().toString());
+            userService.saveUser(user1, user1.getRoles().toString());
+            userService.saveUser(user2, user1.getRoles().toString());
         }
     }
 }

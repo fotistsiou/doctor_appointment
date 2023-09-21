@@ -1,10 +1,11 @@
 package unipi.fotistsiou.doctorappointment.entity;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import jakarta.persistence.*;
 
 @Setter
 @Getter
@@ -16,17 +17,19 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="reason")
-    private String reason;
-
-    @Column(name="appointment_date")
+    @NotEmpty(message = "H ημερομηνία δεν μπορεί να είναι κενή.")
+    @Column(name="appointment_date", nullable=false)
     private String appointmentDate;
 
-    @Column(name="appointment_time")
+    @NotEmpty(message = "H ώρα δεν μπορεί να είναι κενή.")
+    @Column(name="appointment_time", nullable=false)
     private String appointmentTime;
 
     @Column(name="booked", nullable=false)
     private int booked;
+
+    @Column(name="reason")
+    private String reason;
 
     @NotNull
     @ManyToOne

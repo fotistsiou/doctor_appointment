@@ -6,7 +6,6 @@ import unipi.fotistsiou.doctorappointment.entity.Appointment;
 import unipi.fotistsiou.doctorappointment.repository.AppointmentRepository;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -22,10 +21,6 @@ public class AppointmentService {
 
     public Optional<Appointment> getAppointmentById(Long id) {
         return appointmentRepository.findById(id);
-    }
-
-    public List<Appointment> getAllAppointments() {
-        return appointmentRepository.findAll();
     }
 
     public List<Appointment> getAvailableAppointments() {

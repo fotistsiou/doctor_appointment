@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import unipi.fotistsiou.doctorappointment.entity.User;
 import unipi.fotistsiou.doctorappointment.service.UserService;
-
 import java.security.Principal;
 import java.util.Optional;
 
@@ -75,7 +74,7 @@ public class UserController {
     ){
         Optional<User> optionalUser = userService.findOneByEmail(user.getEmail());
         if (optionalUser.isPresent()) {
-            result.rejectValue("email", "error.email", "There is already an account registered with that email. Please try with other email account.");
+            result.rejectValue("email", "error.email", "Υπάρχει ήδη ένας λογαριασμός εγγεγραμμένος με αυτό το email. Δοκιμάστε με άλλο λογαριασμό email.");
         }
         if (result.hasErrors()) {
             model.addAttribute("user", user);
@@ -86,7 +85,7 @@ public class UserController {
             }
             return "register";
         }
-        userService.save(user, role);
+        userService.saveUser(user, role);
         return "redirect:/login?success_register";
     }
 
@@ -153,7 +152,7 @@ public class UserController {
             existingUser.setTelephone(user.getTelephone());
             existingUser.setAddress(user.getAddress());
             existingUser.setSpecialization(user.getSpecialization());
-            userService.update(existingUser);
+            userService.updateUser(existingUser);
         }
         return String.format("redirect:/account/info/%d?success", user.getId());
     }

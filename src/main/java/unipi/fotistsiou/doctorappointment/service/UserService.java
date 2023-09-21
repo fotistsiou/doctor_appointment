@@ -1,4 +1,5 @@
 package unipi.fotistsiou.doctorappointment.service;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,7 @@ public class UserService {
         return userRepository.findOneByEmail(email);
     }
 
-    public User save(User user, String role) {
+    public User saveUser(User user, String role) {
         if (user.getId() == null) {
             if (user.getRoles().isEmpty()) {
                 Set<Role> roles = new HashSet<>();
@@ -46,7 +47,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public void update(User user) {
+    public void updateUser(User user) {
         userRepository.updateUser(
                 user.getId(),
                 user.getFirstName(),

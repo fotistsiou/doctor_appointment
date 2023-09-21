@@ -18,23 +18,23 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "Email cannot be empty")
+    @NotEmpty(message = "Το email δεν μπορεί να είναι κενό.")
     @Column(name="email", nullable=false, unique=true)
     private String email;
 
-    @NotEmpty(message = "Password cannot be empty")
+    @NotEmpty(message = "Ο κωδικός πρόσβασης δεν μπορεί να είναι κενός.")
     @Column(name="password", nullable=false)
     private String password;
 
-    @NotEmpty(message = "Firstname cannot be empty")
+    @NotEmpty(message = "Το όνομα δεν μπορεί να είναι κενό.")
     @Column(name="first_name", nullable=false)
     private String firstName;
 
-    @NotEmpty(message = "Lastname cannot be empty")
+    @NotEmpty(message = "Το επώνυμο δεν μπορεί να είναι κενό.")
     @Column(name="last_name", nullable=false)
     private String lastName;
 
-    @NotEmpty(message = "Telephone cannot be empty")
+    @NotEmpty(message = "Το τηλέφωνο δεν μπορεί να είναι άδειο.")
     @Column(name="telephone", nullable=false)
     private String telephone;
 
