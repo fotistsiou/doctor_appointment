@@ -23,6 +23,25 @@ public class UserController {
         this.userService = userService;
     }
 
+    @GetMapping("/")
+    public String getHome(
+            Model model,
+            Principal principal
+    ){
+        String authUsername = "anonymousUser";
+        if (principal != null) {
+            authUsername = principal.getName();
+        }
+        Optional<User> optionalUser = userService.findOneByEmail(authUsername);
+        if (optionalUser.isPresent()) {
+            String username = optionalUser.get().getFirstName();
+            Long userId = optionalUser.get().getId();
+            model.addAttribute("username", username);
+            model.addAttribute("userId", userId);
+        }
+        return "home";
+    }
+
     @GetMapping("/login")
     public String getLoginForm() {
         return "login";

@@ -17,12 +17,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-public class AppointmentsController {
+public class AppointmentController {
     private final AppointmentService appointmentService;
     private final UserService userService;
 
     @Autowired
-    public AppointmentsController(
+    public AppointmentController(
         AppointmentService appointmentService,
         UserService userService
     ){

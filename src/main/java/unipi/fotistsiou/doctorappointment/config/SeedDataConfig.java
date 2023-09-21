@@ -5,7 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import unipi.fotistsiou.doctorappointment.entity.User;
 import unipi.fotistsiou.doctorappointment.entity.Role;
-import unipi.fotistsiou.doctorappointment.repository.RoleRepository;
+import unipi.fotistsiou.doctorappointment.service.RoleService;
 import unipi.fotistsiou.doctorappointment.service.UserService;
 import java.util.HashSet;
 import java.util.Optional;
@@ -14,15 +14,15 @@ import java.util.Set;
 @Component
 public class SeedDataConfig implements CommandLineRunner {
     private final UserService userService;
-    private final RoleRepository roleRepository;
+    private final RoleService roleService;
 
     @Autowired
     public SeedDataConfig (
         UserService userService,
-        RoleRepository roleRepository
+        RoleService roleService
     ){
         this.userService = userService;
-        this.roleRepository = roleRepository;
+        this.roleService = roleService;
     }
 
     @Override
@@ -31,11 +31,11 @@ public class SeedDataConfig implements CommandLineRunner {
         if (optionalUser.isEmpty()) {
             Role doctor = new Role();
             doctor.setName("ROLE_DOCTOR");
-            roleRepository.save(doctor);
+            roleService.saveRole(doctor);
 
             Role patient = new Role();
             patient.setName("ROLE_PATIENT");
-            roleRepository.save(patient);
+            roleService.saveRole(patient);
 
             User user1 = new User();
             User user2 = new User();
@@ -48,7 +48,7 @@ public class SeedDataConfig implements CommandLineRunner {
             user1.setAddress("Πλάτωνος 134, 17674 Καλλιθέα");
             user1.setSpecialization("Παθολόγος");
             Set<Role> roles1 = new HashSet<>();
-            roleRepository.findByName("ROLE_DOCTOR").ifPresent(roles1::add);
+            roleService.findRoleByName("ROLE_DOCTOR").ifPresent(roles1::add);
             user1.setRoles(roles1);
 
             user2.setFirstName("Άσπα");
@@ -57,7 +57,7 @@ public class SeedDataConfig implements CommandLineRunner {
             user2.setPassword("1234!@#$qwer");
             user2.setTelephone("2101248963");
             Set<Role> roles2 = new HashSet<>();
-            roleRepository.findByName("ROLE_PATIENT").ifPresent(roles2::add);
+            roleService.findRoleByName("ROLE_PATIENT").ifPresent(roles2::add);
             user2.setRoles(roles2);
 
             userService.save(user1, user1.getRoles().toString());

@@ -4,7 +4,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import unipi.fotistsiou.doctorappointment.entity.Role;
 import unipi.fotistsiou.doctorappointment.entity.User;
-import unipi.fotistsiou.doctorappointment.repository.RoleRepository;
 import unipi.fotistsiou.doctorappointment.repository.UserRepository;
 import java.util.HashSet;
 import java.util.Optional;
@@ -13,17 +12,17 @@ import java.util.Set;
 @Service
 public class UserService {
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
+    private final RoleService roleService;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
     public UserService (
         UserRepository userRepository,
-        RoleRepository roleRepository,
+        RoleService roleService,
         PasswordEncoder passwordEncoder
     ){
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
+        this.roleService = roleService;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -39,7 +38,7 @@ public class UserService {
         if (user.getId() == null) {
             if (user.getRoles().isEmpty()) {
                 Set<Role> roles = new HashSet<>();
-                roleRepository.findByName(role).ifPresent(roles::add);
+                roleService.findRoleByName(role).ifPresent(roles::add);
                 user.setRoles(roles);
             }
         }
